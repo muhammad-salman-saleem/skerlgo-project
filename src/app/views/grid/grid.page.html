@@ -1,0 +1,69 @@
+<ion-header mode="md">
+  <ion-toolbar>
+    <ion-title>
+      <div class="toolbar-home">
+        <ion-back-button></ion-back-button>
+        <h4>{{ dataText.title_h4[currentLang] }} <span>{{ title }}</span></h4>
+        <div>
+          <span *ngIf="false">
+          </span>
+        </div>
+      </div>
+      <div class="grid-menu">
+        <span class="menu-title">SHOW WITH</span>
+        <div class="menu-checkbox">
+          <ion-item lines="none">
+            <ion-label>Romaji</ion-label>
+            <ion-checkbox slot="start" [(ngModel)]="romaji"></ion-checkbox>
+          </ion-item>
+          <ion-item lines="none">
+            <ion-label>Illustrations</ion-label>
+            <ion-checkbox slot="start" [(ngModel)]="illustrations"></ion-checkbox>
+          </ion-item>
+        </div>
+      </div>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div>
+
+    <ion-grid [fixed]="true">
+      <h5>Basics</h5>
+      <ion-row *ngFor="let lecon of data?.lecons; let i = index">
+        <ion-col *ngFor="let lettre of lecon.lettres;">
+          <div [ngStyle]="illustrations ? {'background-color': lettre.color}: {}" class="grid-lettre">
+            <span *ngIf="!illustrations" class="kana">{{ lettre.kana }}</span>
+            <div *ngIf="illustrations" class="illustrations">
+              <img class="img-relative" [src]="lettre.illustration" alt="">
+            </div>
+            <span [ngStyle]="illustrations ? {'color': '#fff'}: {}" *ngIf="romaji" class="romaji">{{ lettre.romaji
+              }}</span>
+          </div>
+        </ion-col>
+      </ion-row>
+      <h5>Variants</h5>
+      <ion-row>
+        <ion-col *ngFor="let lettre of data?.variants;">
+          <div class="grid-lettre">
+            <span class="kana">{{ lettre.kana }}</span>
+            <span *ngIf="romaji" class="romaji">{{ lettre.romaji
+              }}</span>
+          </div>
+        </ion-col>
+      </ion-row>
+      <h5>Combination</h5>
+      <ion-row>
+        <ion-col *ngFor="let lettre of data?.variants;">
+          <div class="grid-lettre">
+            <span class="kana">{{ lettre.kana }}</span>
+            <span *ngIf="romaji" class="romaji">{{ lettre.romaji
+              }}</span>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>

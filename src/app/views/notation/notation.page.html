@@ -1,0 +1,42 @@
+<ion-content class="ion-notation-page">
+
+  <div *ngIf="lecon" class="notation-page">
+
+    <div class="header-intro" [ngClass]="{'no-padding-bottom': guide}">
+      <ion-row class="ion-align-items-center header-close">
+        <ion-col (click)="dismiss()">
+          <ion-icon name="close-outline"></ion-icon>
+        </ion-col>
+      </ion-row>
+
+      <ion-row *ngIf="!guide" style="width: 100%;" class="ion-align-items-center header-title">
+        <ion-col size="12">
+          <h1>{{lecon.introduction}}</h1>
+          <h4>{{lecon.label}}</h4>
+          <img src="assets/illustration.svg" alt="">
+        </ion-col>
+      </ion-row>
+
+      <ion-row *ngIf="guide" style="width: 100%;" class="ion-align-items-center header-title header-title-guide">
+        <ion-col size="12">
+          <h4>{{lecon.label}}</h4>
+          <h1>{{lecon.introduction}}</h1>
+          <img src="assets/guide.svg" alt="">
+        </ion-col>
+      </ion-row>
+    </div>
+
+    <div [innerHTML]="lecon.description" class="infos-notation">
+
+    </div>
+
+
+    <div class="skerlingo-padding">
+      <ion-button (click)="page_grid()" class="btn-grid">
+        discover {{ categorie }} Grid
+      </ion-button>
+    </div>
+
+  </div>
+
+</ion-content>
